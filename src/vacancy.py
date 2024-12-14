@@ -1,3 +1,6 @@
+from typing import AnyStr, Any
+
+
 class Vacancy:
     """Класс создания вакансии с параметрами"""
 
@@ -10,7 +13,7 @@ class Vacancy:
         url: str = "Не указан",
         salary: str | None | dict = None,
         snippet: str = "Не указан",
-    ):
+    ) -> None:
         """Конструктор инициализации объекта класса Vacancy (вакансия работника)"""
         self.__name = name
         self.__url = url
@@ -21,7 +24,7 @@ class Vacancy:
         self.__list_vacancies.append(dict_vacancy)
 
     @staticmethod
-    def __validate(salary):
+    def __validate(salary) -> dict[str, int]:
         """Метод валидации зарплаты"""
         if salary is None:
             return {"from": 0, "to": 0}
@@ -42,14 +45,14 @@ class Vacancy:
             # Если тип данных неожиданный, возвращаем значения по умолчанию
             return {"from": 0, "to": 0}
 
-    def __ge__(self, other):
+    def __ge__(self, other) -> None:
         """Метод сравнения вакансий по зарплате (верхний порог)"""
         self_salary_to = self.__salary.get("to", 0)
         other_salary_to = other.__salary.get("to", 0)
         return self_salary_to >= other_salary_to
 
     @classmethod
-    def cast_to_object_list(cls, list_vacancies):
+    def cast_to_object_list(cls, list_vacancies) -> list:
         """Метод добавления вакансий из списка вакансий"""
         for vacancy_data in list_vacancies:
             # Валидируем зарплату
@@ -70,35 +73,35 @@ class Vacancy:
         return cls.__list_vacancies
 
     @classmethod
-    def filtered_salary(cls, from_salary: int = 0, to_salary: int = float("inf")):
+    def filtered_salary(cls, from_salary: int = 0, to_salary: int = float("inf")) -> Any:
         """Метод фильтрации вакансий по зарплате (от и до вилка)"""
         for vacancies in cls.__list_vacancies:
             if vacancies["salary"].get("from", 0) >= from_salary and vacancies["salary"]["to"] <= to_salary:
                 print(vacancies)
 
     @classmethod
-    def list_vacancies(cls):
+    def list_vacancies(cls) -> Any:
         """Метод для получения всех вакансий"""
         return cls.__list_vacancies
 
     @classmethod
-    def clear_list(cls):
+    def clear_list(cls) -> Any:
         cls.__list_vacancies = []
 
     @property
-    def name(self):
+    def name(self) -> Any:
         return self.__name
 
     @property
-    def url(self):
+    def url(self) -> Any:
         return self.__url
 
     @property
-    def salary(self):
+    def salary(self) -> Any:
         return self.__salary
 
     @property
-    def snippet(self):
+    def snippet(self) -> Any:
         return self.__snippet
 
 

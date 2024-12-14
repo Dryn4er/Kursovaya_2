@@ -1,10 +1,12 @@
+from typing import Any
+
 from src.hh_api import HeadHunterAPI
 from src.json_saver import JSONSaver
 from src.users_interactions import filter_vacancies, get_top_vacancies, get_vacancies_by_salary, print_vacancies
 from src.vacancy import Vacancy
 
 
-def user_interaction():
+def user_interaction() -> Any:
     """Функция для взаимодействия с пользователем"""
 
     # Создание экземпляра класса для работы с API сайтов с вакансиями

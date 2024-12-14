@@ -1,4 +1,5 @@
 import json
+from typing import Any
 
 from src.base_json_saver import BaseJsonSaver
 from src.vacancy import Vacancy
@@ -7,18 +8,18 @@ from src.vacancy import Vacancy
 class JSONSaver(BaseJsonSaver):
     """Класс для сохранения, добавления и изменения вакансий в json-файле"""
 
-    def __init__(self, file_saver: str = "data/filtered_vacancies.json"):
+    def __init__(self, file_saver: str = "data/filtered_vacancies.json") -> None:
         """Констркутор, инициализирует путь до файла (для работы с ним)"""
         self.__file_saver = file_saver
 
     @staticmethod
-    def load_info_json(file_path):
+    def load_info_json(file_path) -> None:
         """Метод получения данных из файла"""
         with open(file_path, encoding="utf-8") as file:
             json_file = json.load(file)
             return json_file
 
-    def add_vacancy(self, vacancies: Vacancy | dict):
+    def add_vacancy(self, vacancies: Vacancy | dict) -> Any:
         """Метод добавления вакансий в файл json"""
         with open(self.__file_saver, "r+", encoding="utf-8") as file:
             try:
@@ -42,7 +43,7 @@ class JSONSaver(BaseJsonSaver):
         with open(self.__file_saver, "w", encoding="utf-8") as file:
             json.dump(json_file_vacancies, file, ensure_ascii=False, indent=4)
 
-    def delete_vacancy(self, vacancies: Vacancy):
+    def delete_vacancy(self, vacancies: Vacancy) -> Any:
         """Метод удаления вакансий из файла json"""
         with open(self.__file_saver, "r+", encoding="utf-8") as file:
             json_file_vacancies = json.load(file)

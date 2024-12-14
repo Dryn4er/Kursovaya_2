@@ -6,7 +6,7 @@ from src.base_api import BaseLoadVacancies, BaseSaveFile
 class HeadHunterAPI(BaseSaveFile, BaseLoadVacancies):
     """Класс получает информацию о вакансиях с сайта HeadHunter"""
 
-    def __init__(self, file_worker: str = "data/json_vacancies.json"):
+    def __init__(self, file_worker: str = "data/json_vacancies.json") -> None:
         """Конструктор обьекта запроса инфо через API сервис"""
 
         self.__url = "https://api.hh.ru/vacancies"
@@ -15,7 +15,7 @@ class HeadHunterAPI(BaseSaveFile, BaseLoadVacancies):
         self.__vacancies = []  # конечный список, в который складываются вакансии list[dict]
         super().__init__(file_worker)
 
-    def load_vacancies(self, keyword: str):
+    def load_vacancies(self, keyword: str) -> list:
         """Метод загрузки данных вакансий из API сервиса"""
 
         self.__params["text"] = keyword
