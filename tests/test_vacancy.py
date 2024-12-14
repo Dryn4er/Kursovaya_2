@@ -4,7 +4,7 @@ from src.vacancy import Vacancy
 def test_init_vacancy(test_add_vacancy):
     assert test_add_vacancy.name == "Python Developer"
     assert test_add_vacancy.url == "<https://hh.ru/vacancy/123456>"
-    assert test_add_vacancy.salary == {'from': 100000, 'to': 150000}
+    assert test_add_vacancy.salary == {"from": 100000, "to": 150000}
     assert test_add_vacancy.snippet == "Требования: опыт работы от 3 лет..."
 
     Vacancy().clear_list()
@@ -29,7 +29,7 @@ def test_filtered_salary_vacancy(capsys, vacancy_1, vacancy_2, test_result_filte
 def test_ge_vacancy(capsys, vacancy_1, vacancy_2):
     print(Vacancy.__ge__(vacancy_2, vacancy_1))
     message = capsys.readouterr()
-    assert message.out.strip() == 'True'
+    assert message.out.strip() == "True"
 
     Vacancy().clear_list()
 
